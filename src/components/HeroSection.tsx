@@ -1,5 +1,5 @@
 import { ArrowRight, Download } from 'lucide-react';
-import portraitImage from '@/assets/vaishnavi-portrait.jpg';
+import portraitImage from '@/assets/vaishnavi-profile.jpg';
 const HeroSection = () => {
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -78,18 +78,18 @@ const HeroSection = () => {
           <div className="relative animate-fade-in" style={{
           animationDelay: '0.3s'
         }}>
-            <div className="relative mx-auto lg:ml-auto w-80 h-96">
+            <div className="relative mx-auto lg:ml-auto w-80 h-80">
               {/* Glow effect behind image */}
-              <div className="absolute inset-0 rounded-3xl opacity-30 blur-2xl animate-pulse-slow" style={{
+              <div className="absolute inset-0 rounded-2xl opacity-30 blur-2xl animate-pulse-slow" style={{
               background: 'var(--gradient-primary)'
             }}></div>
               
-              <img src={portraitImage} alt="Gattagoni Vaishnavi - Data Analyst and AI Engineer" className="relative z-10 w-full h-full object-cover rounded-3xl shadow-2xl" style={{
+              <img src={portraitImage} alt="Gattagoni Vaishnavi - Data Analyst and AI Engineer" className="relative z-10 w-full h-full object-cover rounded-2xl shadow-2xl" style={{
               boxShadow: 'var(--shadow-card)'
             }} />
               
               {/* Decorative border */}
-              <div className="absolute -inset-1 rounded-3xl opacity-50 blur-sm" style={{
+              <div className="absolute -inset-1 rounded-2xl opacity-50 blur-sm" style={{
               background: 'var(--gradient-secondary)'
             }}></div>
             </div>
