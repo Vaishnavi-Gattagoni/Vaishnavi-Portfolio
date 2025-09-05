@@ -32,25 +32,25 @@ const HeroSection = () => {
           {/* Text Content */}
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <p className="text-lg text-muted-foreground font-medium">Hi, I'm</p>
+              <p className="text-lg font-medium text-white">Hi, I'm</p>
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="hero-text text-amber-500">Gattagoni</span>
+                <span className="hero-text text-yellow-300">Gattagoni</span>
                 <br />
-                <span className="hero-text text-amber-500">Vaishnavi</span>
+                <span className="hero-text text-yellow-300">Vaishnavi</span>
               </h1>
-              <h2 className="text-xl lg:text-2xl font-medium text-muted-foreground">
+              <h2 className="text-xl lg:text-2xl font-medium text-white">
                 Aspiring Data Analyst | AI & ML Enthusiast | Full Stack Developer
               </h2>
             </div>
             
-            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+            <p className="text-lg max-w-xl leading-relaxed text-white">
               Turning ideas into intelligent solutions with Data, AI, and Code.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={scrollToProjects} className="btn-hero flex items-center gap-2 justify-center">
+              <button onClick={scrollToProjects} className="btn-hero flex items-center gap-2 justify-center text-stone-950 bg-inherit">
                 View My Work
-                <ArrowRight size={20} />
+                <ArrowRight size={20} className="bg-yellow-300" />
               </button>
               <button onClick={scrollToContact} className="btn-outline flex items-center gap-2 justify-center">
                 Contact Me
@@ -61,15 +61,15 @@ const HeroSection = () => {
             <div className="flex gap-8 pt-4">
               <div>
                 <p className="text-2xl font-bold hero-text">5+</p>
-                <p className="text-sm text-muted-foreground">Projects</p>
+                <p className="text-sm text-white">Projects</p>
               </div>
               <div>
                 <p className="text-2xl font-bold hero-text">2</p>
-                <p className="text-sm text-muted-foreground">Internships</p>
+                <p className="text-sm text-white">Internships</p>
               </div>
               <div>
                 <p className="text-2xl font-bold hero-text">2026</p>
-                <p className="text-sm text-muted-foreground">Graduate</p>
+                <p className="text-sm text-white">Graduate</p>
               </div>
             </div>
           </div>
