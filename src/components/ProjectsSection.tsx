@@ -72,12 +72,22 @@ const ProjectsSection = () => {
                     {project.icon}
                   </div>
                   <div className="flex gap-2">
-                    <button className="p-2 rounded-lg hover:bg-card transition-colors group/btn">
+                    <a 
+                      href="https://github.com/Vaishnavi-Gattagoni" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg hover:bg-card transition-colors group/btn"
+                    >
                       <Github size={18} className="group-hover/btn:text-accent transition-colors" />
-                    </button>
-                    <button className="p-2 rounded-lg hover:bg-card transition-colors group/btn">
+                    </a>
+                    <a 
+                      href="https://github.com/Vaishnavi-Gattagoni" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg hover:bg-card transition-colors group/btn"
+                    >
                       <ExternalLink size={18} className="group-hover/btn:text-accent transition-colors" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -131,10 +141,15 @@ const ProjectsSection = () => {
                 I'm constantly working on new innovative projects. Check out my GitHub for the latest updates.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="btn-hero flex items-center gap-2 justify-center">
+                <a 
+                  href="https://github.com/Vaishnavi-Gattagoni" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-hero flex items-center gap-2 justify-center"
+                >
                   <Github size={18} />
                   View GitHub
-                </button>
+                </a>
                 <button 
                   onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
                   className="btn-outline"
