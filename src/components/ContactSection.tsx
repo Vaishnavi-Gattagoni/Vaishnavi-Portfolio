@@ -1,6 +1,69 @@
 import { Mail, Phone, Linkedin, Github, Code, Trophy } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        'service_uzucvxm', // Service ID
+        'template_cvr2dys', // Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Vaishnavi'
+        },
+        'lAZWOOHZ5GWBm22NP' // Public Key
+      );
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const contactMethods = [
     {
       icon: <Mail size={24} />,
@@ -94,24 +157,40 @@ const ContactSection = () => {
             {/* Quick Message */}
             <div className="card-hover rounded-3xl p-8">
               <h3 className="text-2xl font-bold mb-6 text-center">Send a Message</h3>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="w-full p-3 rounded-xl bg-muted/50 border border-border focus:border-accent focus:outline-none transition-colors"
+                  required
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full p-3 rounded-xl bg-muted/50 border border-border focus:border-accent focus:outline-none transition-colors"
+                  required
                 />
                 <textarea
+                  name="message"
                   placeholder="Your Message"
                   rows={4}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full p-3 rounded-xl bg-muted/50 border border-border focus:border-accent focus:outline-none transition-colors resize-none"
+                  required
                 />
-                <button type="submit" className="w-full btn-hero">
-                  Send Message
+                <button 
+                  type="submit" 
+                  disabled={isLoading}
+                  className="w-full btn-hero disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
