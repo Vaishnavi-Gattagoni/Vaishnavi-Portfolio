@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Vaishnavi's Portfolio Design System - Dark Theme with Tech Accents */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme base colors */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Vibrant coral/red accent */
+    --primary: 11 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Deep dark card backgrounds */
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 88%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Electric cyan/teal */
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Tech gradient colors */
+    --tech-blue: 220 100% 60%;
+    --tech-purple: 270 100% 65%;
+    --tech-teal: 180 100% 50%;
+    --tech-coral: 11 100% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-coral)), hsl(var(--tech-blue)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--tech-teal)), hsl(var(--tech-purple)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(var(--secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 2%), hsl(0 0% 8%));
+
+    /* Shadows with color */
+    --shadow-primary: 0 10px 40px hsl(var(--tech-coral) / 0.3);
+    --shadow-accent: 0 10px 40px hsl(var(--tech-teal) / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 60px hsl(var(--accent) / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +127,147 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero text effects */
+  .hero-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .tech-glow {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.5);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-500 hover:scale-105 hover:shadow-accent;
+    background: var(--gradient-card);
+  }
+
+  .service-card {
+    @apply relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:scale-105;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .service-card::before {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    content: '';
+    background: var(--gradient-primary);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .service-card:hover::before {
+    @apply opacity-10;
+  }
+
+  /* Project cards */
+  .project-card {
+    @apply relative overflow-hidden rounded-2xl bg-card p-6 transition-all duration-500 hover:scale-105;
+    box-shadow: var(--shadow-card);
+  }
+
+  .project-card:hover {
+    box-shadow: var(--shadow-accent);
+  }
+
+  /* Skill progress bars */
+  .skill-bar {
+    @apply relative h-3 overflow-hidden rounded-full bg-muted;
+  }
+
+  .skill-progress {
+    @apply absolute left-0 top-0 h-full rounded-full transition-all duration-1000 ease-out;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply relative px-4 py-2 text-muted-foreground transition-colors duration-300 hover:text-foreground;
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300;
+    content: '';
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Button variants */
+  .btn-hero {
+    @apply relative overflow-hidden rounded-full px-8 py-4 font-semibold text-primary-foreground transition-all duration-300;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn-hero:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-outline {
+    @apply rounded-full border-2 border-accent px-8 py-4 font-semibold text-accent transition-all duration-300 hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Geometric elements */
+  .floating-circle {
+    @apply absolute rounded-full opacity-20;
+    background: var(--gradient-secondary);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .tech-icon {
+    @apply rounded-2xl p-4 transition-all duration-300;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .tech-icon:hover {
+    @apply scale-110;
+    box-shadow: var(--shadow-accent);
+  }
+}
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }
